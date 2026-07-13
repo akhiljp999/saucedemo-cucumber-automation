@@ -8,3 +8,4 @@ Feature: Validate Home page
     Given user logged to the application with valid credential
     When user clicks on the hamburger icon
     Then Hamburger menu should be displayed
+    And Expected menu options should be displayed

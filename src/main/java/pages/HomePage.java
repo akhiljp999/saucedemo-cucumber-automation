@@ -9,6 +9,7 @@ import java.util.List;
 public class HomePage extends BasePage{
     public HomePage(WebDriver driver){
         super(driver);
+        waitUntilPageLoaded(homePageTitle);
     }
 
     By homePageTitle = By.xpath("//*[@class='header_label']//*[@class='app_logo']");
@@ -25,6 +26,12 @@ public class HomePage extends BasePage{
     By footerCopyRightLabel = By.className("footer_copy");
 
     By inventoryItems = By.className("inventory_item");
+
+    String inventoryItemsXpath = "//div[@class='inventory_item_label']//div[text()='{REPLACE_TEXT}']//ancestor::div[@class='inventory_item']";
+
+    By inventoryTitle = By.className("inventory_item_name");
+    By inventoryPrice = By.className("inventory_item_price");
+    By inventoryAddToCartButton = By.id("add-to-cart-sauce-labs-backpack");
 
 
     public WebElement findThePageTitleElement(){
@@ -72,6 +79,30 @@ public class HomePage extends BasePage{
     public List<WebElement> findAllInventoryItems(){
         return findElements(inventoryItems);
     }
+
+    public WebElement findAnInventoryItemByIndex(int index){
+        return findAllInventoryItems().get(index);
+    }
+
+    public WebElement findAnInventoryItemByLabel(String label){
+        return findAnElement(constructTheLocatorWithXpath(inventoryItemsXpath, label));
+    }
+
+    public WebElement findTheInventoryTitleElement(WebElement element){
+        return findAnElement(element, inventoryTitle);
+    }
+    public WebElement findTheInventoryPriceElement(WebElement element){
+        return findAnElement(element, inventoryPrice);
+    }
+    public WebElement findTheInventoryAddToCartElement(WebElement element){
+        return findAnElement(element, inventoryAddToCartButton);
+    }
+
+    public HamburgerMenuPage openHamburgerMenu(){
+        findTheHamburgerIcon().click();
+        return new HamburgerMenuPage(driver);
+    }
+
 
 
 

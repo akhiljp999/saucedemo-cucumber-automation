@@ -54,6 +54,10 @@ public class BasePage {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    protected void waitUntilPageLoaded(By locator){
+        waitForElement(locator);
+    }
+
     protected List<WebElement> waitForAllElements(By locator){
         wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigReader.getPropertyAsNumber("explicit.wait.seconds")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -62,5 +66,9 @@ public class BasePage {
 
     protected boolean waitUntilTheInvisibilityOfElement(By locator){
         return wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
+    protected By constructTheLocatorWithXpath(String locatorXpath, String replacementText){
+        return By.xpath(locatorXpath.replace("{REPLACE_TEXT}", replacementText));
     }
 }

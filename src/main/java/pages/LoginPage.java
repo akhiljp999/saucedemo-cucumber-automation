@@ -13,7 +13,6 @@ public class LoginPage extends BasePage{
     By loginErrorMessage = By.xpath("//*[contains(@class, 'error-message-container error')]//h3");
     By loginErrorMessageCloseButton = By.xpath("//*[contains(@class, 'error-message-container error')]//h3/button");
 
-
     public LoginPage(WebDriver driver) {
         super(driver);
     }
