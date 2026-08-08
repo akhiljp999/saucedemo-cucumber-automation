@@ -3,12 +3,14 @@ package pages;
 import factory.ConfigReader;
 import factory.DriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BasePage {
@@ -28,7 +30,11 @@ public class BasePage {
     }
 
     protected List<WebElement> findElements(By locator){
-        return waitForAllElements(locator);
+        try {
+            return waitForAllElements(locator);
+        } catch (TimeoutException e){
+            return new ArrayList<>();
+        }
     }
 
     protected void clickOnElement(By locator){
@@ -41,6 +47,11 @@ public class BasePage {
 
     protected void enterText(By locator, String value){
         WebElement element = waitForElement(locator);
+        element.clear();
+        element.sendKeys(value);
+    }
+
+    protected void enterText(WebElement element, String value){
         element.clear();
         element.sendKeys(value);
     }

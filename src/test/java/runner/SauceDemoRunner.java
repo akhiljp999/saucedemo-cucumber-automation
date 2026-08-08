@@ -5,9 +5,10 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = {
-//                "src/test/resources/features/login.feature",
-//                "src/test/resources/features/homePage.feature",
+                "src/test/resources/features/login.feature",
+                "src/test/resources/features/homePage.feature",
                 "src/test/resources/features/logout.feature",
+                "src/test/resources/features/itemsCheckout.feature"
         },
 //        dryRun = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE,

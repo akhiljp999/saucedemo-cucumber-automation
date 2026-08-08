@@ -27,11 +27,11 @@ public class HomePage extends BasePage{
 
     By inventoryItems = By.className("inventory_item");
 
-    String inventoryItemsXpath = "//div[@class='inventory_item_label']//div[text()='{REPLACE_TEXT}']//ancestor::div[@class='inventory_item']";
+    String inventoryItemsXpath = "//div[@class='inventory_item_label']//div[normalize-space()='{REPLACE_TEXT}']//ancestor::div[@class='inventory_item']";
 
     By inventoryTitle = By.className("inventory_item_name");
     By inventoryPrice = By.className("inventory_item_price");
-    By inventoryAddToCartButton = By.id("add-to-cart-sauce-labs-backpack");
+    By inventoryAddToCartButton = By.xpath("//button[normalize-space()='Add to cart']");
 
 
     public WebElement findThePageTitleElement(){
@@ -101,6 +101,11 @@ public class HomePage extends BasePage{
     public HamburgerMenuPage openHamburgerMenu(){
         findTheHamburgerIcon().click();
         return new HamburgerMenuPage(driver);
+    }
+
+    public ItemsCheckoutPage openCartPage(){
+        findTheCartIcon().click();
+        return new ItemsCheckoutPage(driver);
     }
 
 
