@@ -28,15 +28,15 @@ jobs:
           cache: maven
 
       - name: Run smoke tests
-          run: |
-            mvn clean test \
-              -Dbrowser=chrome \
-              -Dheadless=true \
-              -Dcucumber.filter.tags="@smoke"
+        run: |
+          mvn clean test \
+            -Dbrowser=chrome \
+            -Dheadless=true \
+            -Dcucumber.filter.tags="@smoke"
 
       - name: Upload test results
-          if: always()
-          uses: actions/upload-artifact@v4
-          with:
-            name: test-results
-            path: target/
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: target/
