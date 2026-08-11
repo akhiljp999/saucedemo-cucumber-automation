@@ -3,7 +3,15 @@ package context;
 import pages.*;
 
 public class TestContext {
-    public LoginPage loginPage;
+    public LoginPage getLoginPage() {
+        return loginPage;
+    }
+
+    public void setLoginPage(LoginPage loginPage) {
+        this.loginPage = loginPage;
+    }
+
+    private LoginPage loginPage;
     public HomePage homePage;
     public HamburgerMenuPage hamburgerMenuPage;
     public ItemsCheckoutPage itemsCheckoutPage;

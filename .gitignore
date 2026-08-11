@@ -1,4 +1,6 @@
 target/
+.allure/
+Resources/Reports/
 *.class
 *.log
 

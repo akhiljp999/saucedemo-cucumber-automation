@@ -5,10 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
         features = {
-                "src/test/resources/features/login.feature",
-                "src/test/resources/features/homePage.feature",
-                "src/test/resources/features/logout.feature",
-                "src/test/resources/features/itemsCheckout.feature"
+                "src/test/resources/features"
         },
 //        dryRun = true,
         snippets = CucumberOptions.SnippetType.CAMELCASE,
@@ -16,10 +13,12 @@ import io.cucumber.testng.CucumberOptions;
         glue = {"stepDefinitions", "hooks"},
         plugin = {
                 "pretty",
-                "html:Resources/cucumber-report.html",
-                "json:target/cucumber-report.json"
-        },
-        tags = ""
+                "html:Resources/Reports/cucumber-report.html",
+                "json:Resources/Reports/cucumber-report.json",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+        }
+//        ,
+//        tags = "@login"
 )
 public class SauceDemoRunner extends AbstractTestNGCucumberTests {
 }

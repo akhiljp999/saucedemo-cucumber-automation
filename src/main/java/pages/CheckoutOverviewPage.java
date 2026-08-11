@@ -21,7 +21,7 @@ public class CheckoutOverviewPage extends BasePage{
 
 
     public List<WebElement> findCartItems(){
-        return findElements(cartItems);
+        return areCartItemsDisplayed(cartItems);
     }
 
     public WebElement findThePageTitle(){

@@ -42,6 +42,10 @@ public class ItemsCheckoutPage extends BasePage{
         return findElements(cartItems);
     }
 
+    public List<WebElement> areCartItemsDisplayed(){
+        return areCartItemsDisplayed(cartItems);
+    }
+
     public int findTheNumberOfItemsInCart(){
         return Integer.parseInt(getElementText(cartAddedItemsCount));
     }

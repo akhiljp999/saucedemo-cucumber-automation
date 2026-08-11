@@ -17,8 +17,10 @@ public class BasePage {
     protected WebDriver driver;
     WebDriverWait wait;
 
+
     public BasePage(WebDriver driver){
         this.driver = driver;
+        wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigReader.getPropertyAsNumber("explicit.wait.seconds")));
     }
 
     protected WebElement findAnElement(By locator){
@@ -30,6 +32,10 @@ public class BasePage {
     }
 
     protected List<WebElement> findElements(By locator){
+        return waitForAllElements(locator);
+    }
+
+    protected List<WebElement> areCartItemsDisplayed(By locator){
         try {
             return waitForAllElements(locator);
         } catch (TimeoutException e){
@@ -61,7 +67,6 @@ public class BasePage {
     }
 
     protected WebElement waitForElement(By locator){
-        wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigReader.getPropertyAsNumber("explicit.wait.seconds")));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
@@ -70,7 +75,6 @@ public class BasePage {
     }
 
     protected List<WebElement> waitForAllElements(By locator){
-        wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigReader.getPropertyAsNumber("explicit.wait.seconds")));
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
         return driver.findElements(locator);
     }

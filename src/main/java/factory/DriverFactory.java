@@ -35,8 +35,8 @@ public class DriverFactory {
             default -> throw new IllegalArgumentException("Unsupported browser: " + browser);
         };
 
-        webDriver.manage().timeouts()
-                .implicitlyWait(Duration.ofSeconds(ConfigReader.getPropertyAsNumber("implicit.wait.seconds")));
+//        webDriver.manage().timeouts()
+//                .implicitlyWait(Duration.ofSeconds(ConfigReader.getPropertyAsNumber("implicit.wait.seconds")));
         webDriver.manage().window().maximize();
         DRIVER.set(webDriver);
     }

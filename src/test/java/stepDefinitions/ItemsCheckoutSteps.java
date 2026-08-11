@@ -23,7 +23,7 @@ public class ItemsCheckoutSteps extends BaseTestSteps{
 
     @And("no items should be available in checkout page")
     public void noItemsShouldBeAvailableInCheckoutPage() {
-        Assert.assertTrue(context.itemsCheckoutPage.findCartItems().isEmpty(), "Validate no items available in cart now");
+        Assert.assertTrue(context.itemsCheckoutPage.areCartItemsDisplayed().isEmpty(), "Validate no items available in cart now");
     }
 
     @Given("user logged to the application with valid credential and navigated to the checkout page")

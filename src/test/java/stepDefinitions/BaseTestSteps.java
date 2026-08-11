@@ -13,8 +13,8 @@ public class BaseTestSteps {
         this.context = context;
     }
    public void successfulUserLoggedToTheApplicationWithValidCredential(){
-       context.loginPage = new LoginPage(DriverFactory.getDriver());
-       context.homePage = context.loginPage.loadTheLoginPage()
+       context.setLoginPage(new LoginPage(DriverFactory.getDriver()));
+       context.homePage = context.getLoginPage().loadTheLoginPage()
                 .enterUserName(ConfigReader.getProperty("adminUser"))
                 .enterPassword(ConfigReader.getProperty("adminPassword"))
                 .clickOnLoginButton();

@@ -1,3 +1,4 @@
+@login
 Feature: Validate the login page functionalities
   Scenario: Login with valid credentials
     Given user navigates to the login screen
