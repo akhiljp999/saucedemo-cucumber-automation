@@ -27,16 +27,32 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
+      - name: Clean report output
+        run: rm -rf Resources/Reports
+
       - name: Run smoke tests
+        id: smoke-tests
+        continue-on-error: true
         run: |
           mvn clean test \
             -Dbrowser=chrome \
             -Dheadless=true \
             -Dcucumber.filter.tags="@smoke"
 
-      - name: Upload test results
+      - name: Generate Allure report
+        if: always()
+        run: mvn allure:report
+
+      - name: Upload reports
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: test-results
-          path: target/
+          name: test-reports
+          path: |
+            Resources/Reports/
+            target/surefire-reports/
+          if-no-files-found: warn
+
+      - name: Fail workflow if tests failed
+        if: steps.smoke-tests.outcome == 'failure'
+        run: exit 1
