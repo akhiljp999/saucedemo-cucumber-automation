@@ -1,5 +1,6 @@
-@login @smoke
+@login
 Feature: Validate the login page functionalities
+  @smoke
   Scenario: Login with valid credentials
     Given user navigates to the login screen
     When user enter the username as "standard_user"
