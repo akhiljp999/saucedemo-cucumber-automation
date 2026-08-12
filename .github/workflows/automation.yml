@@ -52,19 +52,17 @@ jobs:
         run: mvn allure:report
 
       - name: Configure GitHub Pages
-        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.repository.private == false
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - name: Upload Allure report to GitHub Pages
-        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.repository.private == false
         uses: actions/upload-pages-artifact@v4
         with:
           path: Resources/Reports/allure-report
 
       - name: Deploy Allure report to GitHub Pages
-        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main' && github.event.repository.private == false
         id: deployment
         uses: actions/deploy-pages@v4
 
