@@ -1,41 +1,41 @@
-Feature: Validation inventory Item checkout
-  Scenario: Validate inventory Checkout Page
-    Given user logged to the application with valid credential
-    When user clicks on the cart icon
-    Then checkout page should display
-    And no items should be available in checkout page
+Feature: Shopping cart and checkout
+  Scenario: Display an empty shopping cart
+    Given the user is logged in with valid credentials
+    When the user clicks on the cart icon
+    Then the cart page should be displayed
+    And the cart should be empty
 
-  Scenario: Validate the continue shopping action from checkout page
-    Given user logged to the application with valid credential and navigated to the checkout page
-    When use clicks on the continue shopping button
-    Then user should navigate to the home page
+  Scenario: Continue shopping from the cart page
+    Given the user is logged in with valid credentials and is on the cart page
+    When the user clicks on the continue shopping button
+    Then the home page should be displayed
 
-  Scenario: Validate items checkout page after adding new items
-    Given user logged to the application with valid credential
-    When user add "Sauce Labs Backpack", "Test.allTheThings() T-Shirt (Red)" to the cart
-    And user clicks on the cart icon
-    Then checkout page should display
-    And Added items should display in checkout page
+  Scenario: Display the selected items in the shopping cart
+    Given the user is logged in with valid credentials
+    When the user adds "Sauce Labs Backpack" and "Test.allTheThings() T-Shirt (Red)" to the cart
+    And the user clicks on the cart icon
+    Then the cart page should be displayed
+    And the cart should contain only the items added by the user
 
+  Scenario: Display the checkout information form
+    Given the user is logged in with valid credentials
+    And the user has added items to the cart and opened the cart page
+    When the user clicks on the checkout button
+    Then the checkout information page should display the required fields
 
-  Scenario: Validate the items checkout user information page
-    Given user logged to the application with valid credential
-    And user navigated to checkout page after adding items to cart
-    When user clicks on the checkout button
-    Then Checkout user information details form page should display with required fields
+  Scenario: Display the selected items and correct totals on the checkout overview page
+    Given the user is logged in with valid credentials
+    And the user has added items to the cart and opened the cart page
+    And the user clicks on the checkout button
+    When the user enters their checkout information and clicks on continue
+    Then the checkout overview page should display the checkout details
+    And the checkout overview should contain only the items added to the cart
+    And the checkout overview should display the correct totals
 
-
-  Scenario: Validate checkout overview page
-    Given user logged to the application with valid credential
-    And user navigated to checkout page after adding items to cart
-    And user clicks on the checkout button
-    When User enter information details and click on continue
-    Then checkout over page should display with checkout details
-
-  Scenario: Validate the checkout complete process
-    Given user logged to the application with valid credential
-    And user navigated to checkout page after adding items to cart
-    And user clicks on the checkout button
-    And User enter information details and click on continue
-    When user clicks on finish button from overview page
-    Then user should see the order success message with order details
+  Scenario: Complete checkout successfully
+    Given the user is logged in with valid credentials
+    And the user has added items to the cart and opened the cart page
+    And the user clicks on the checkout button
+    And the user enters their checkout information and clicks on continue
+    When the user clicks on the finish button on the overview page
+    Then the order confirmation page should display a success message

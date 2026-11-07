@@ -11,17 +11,17 @@ public class HamburgerMenuSteps extends BaseTestSteps{
     public HamburgerMenuSteps(TestContext context){
         super(context);
     }
-    @When("user clicks on the hamburger icon")
+    @When("the user clicks on the hamburger icon")
     public void user_clicks_on_the_hamburger_icon(){
         context.hamburgerMenuPage = context.homePage.openHamburgerMenu();
     }
 
-    @Then("Hamburger menu should be displayed")
+    @Then("the hamburger menu should be displayed")
     public void hamburgerMenuShouldBeDisplayed() {
         Assert.assertTrue(context.hamburgerMenuPage.findHamburgerContainer().isDisplayed(), "Hamburger menu displayed");
     }
 
-    @And("Expected menu options should be displayed")
+    @And("the expected menu options should be displayed")
     public void expectedMenuOptionsShouldBeDisplayed() {
         Assert.assertTrue(context.hamburgerMenuPage.findTheAllItemsMenu().isDisplayed(), "All items menu displayed");
         Assert.assertTrue(context.hamburgerMenuPage.findAboutMenu().isDisplayed(), "About menu displayed");

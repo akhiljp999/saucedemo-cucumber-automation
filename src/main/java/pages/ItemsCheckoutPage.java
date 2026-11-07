@@ -1,5 +1,8 @@
 package pages;
 
+import models.CartItem;
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -40,6 +43,19 @@ public class ItemsCheckoutPage extends BasePage{
 
     public List<WebElement> findCartItems(){
         return findElements(cartItems);
+    }
+
+    public List<CartItem> readCartItems() {
+        List<CartItem> items = new ArrayList<>();
+        for (WebElement item : findCartItems()) {
+            items.add(new CartItem(
+                    item.findElement(By.className("inventory_item_name")).getText(),
+                    item.findElement(By.className("inventory_item_desc")).getText(),
+                    new BigDecimal(item.findElement(By.className("inventory_item_price"))
+                            .getText().replace("$", "").trim()),
+                    Integer.parseInt(item.findElement(By.className("cart_quantity")).getText().trim())));
+        }
+        return items;
     }
 
     public List<WebElement> areCartItemsDisplayed(){

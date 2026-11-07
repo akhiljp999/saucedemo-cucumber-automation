@@ -44,8 +44,8 @@ jobs:
         run: |
           mvn clean test \
             -Dbrowser=chrome \
-            -Dheadless=true \
-            -Dcucumber.filter.tags="@smoke"
+            -Dheadless=true
+#            -Dcucumber.filter.tags="@smoke"
 
       - name: Generate Allure report
         if: always()

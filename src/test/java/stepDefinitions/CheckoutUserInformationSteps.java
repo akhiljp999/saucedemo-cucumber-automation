@@ -9,7 +9,7 @@ public class CheckoutUserInformationSteps extends BaseTestSteps{
     public CheckoutUserInformationSteps(TestContext context){
         super(context);
     }
-    @Then("Checkout user information details form page should display with required fields")
+    @Then("the checkout information page should display the required fields")
     public void checkoutUserInformationDetailsFormPageShouldDisplayWithRequiredFields() {
         Assert.assertTrue(context.checkoutUserInformationPage.findThePageTitle().isDisplayed(), "User information page displayed");
         Assert.assertEquals(context.checkoutUserInformationPage.findThePageTitle().getText(), "Checkout: Your Information", "Validated User information page title");
@@ -20,7 +20,7 @@ public class CheckoutUserInformationSteps extends BaseTestSteps{
         Assert.assertTrue(context.checkoutUserInformationPage.findTheContinueButton().isDisplayed(), "User information page continue button displayed");
     }
 
-    @When("User enter information details and click on continue")
+    @When("the user enters their checkout information and clicks on continue")
     public void userEnterInformationDetailsAndClickOnContinue() {
         context.checkoutUserInformationPage.enterFirstNameValue("new auto user 1");
         context.checkoutUserInformationPage.enterLastNameValue("new auto user last name");

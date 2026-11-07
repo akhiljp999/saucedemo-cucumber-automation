@@ -1,8 +1,12 @@
 package context;
 
 import pages.*;
+import models.CartItem;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TestContext {
+    public final List<CartItem> expectedCartItems = new ArrayList<>();
     public LoginPage getLoginPage() {
         return loginPage;
     }

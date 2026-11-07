@@ -1,5 +1,5 @@
-Feature: Validate Logout feature
-  Scenario: Validate logout from sauce demo
-    Given user logged to the application with valid credential
-    When user clicks on the logout button
-    Then user should navigate to the login screen
+Feature: Logout
+  Scenario: Log out of SauceDemo
+    Given the user is logged in with valid credentials
+    When the user clicks on the logout button
+    Then the login page should be displayed

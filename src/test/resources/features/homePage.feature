@@ -1,11 +1,11 @@
 @homepage
-Feature: Validate Home page
-  Scenario: Validate the swag lab home screen layout
-    Given user logged to the application with valid credential
-    Then home page sections should be displayed
+Feature: Home page
+  Scenario: Display the SauceDemo home page layout
+    Given the user is logged in with valid credentials
+    Then the home page sections should be displayed
 
-  Scenario: Validate Home Page Hamburger Menu
-    Given user logged to the application with valid credential
-    When user clicks on the hamburger icon
-    Then Hamburger menu should be displayed
-    And Expected menu options should be displayed
+  Scenario: Display the hamburger menu options
+    Given the user is logged in with valid credentials
+    When the user clicks on the hamburger icon
+    Then the hamburger menu should be displayed
+    And the expected menu options should be displayed

@@ -17,7 +17,7 @@ public class BaseTestSteps {
        context.homePage = context.getLoginPage().loadTheLoginPage()
                 .enterUserName(ConfigReader.getProperty("adminUser"))
                 .enterPassword(ConfigReader.getProperty("adminPassword"))
-                .clickOnLoginButton();
+                .loginExpectingSuccess();
         Assert.assertTrue(context.homePage.findThePageTitleElement().isDisplayed(), "Home page title element displayed");
         Assert.assertEquals(context.homePage.findThePageTitleElement().getText(), "Swag Labs", "Home page title element displayed");
     }

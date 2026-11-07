@@ -3,6 +3,7 @@ package stepDefinitions;
 import context.TestContext;
 import factory.ConfigReader;
 import factory.DriverFactory;
+import io.cucumber.java.PendingException;
 import io.cucumber.java.en.*;
 import io.qameta.allure.Allure;
 import org.testng.Assert;
@@ -15,7 +16,7 @@ public class LoginSteps extends BaseTestSteps{
         super(context);
     }
 
-    @Given("user navigates to the login screen")
+    @Given("the user navigates to the login page")
     public void userNavigatesToTheLoginScreen(){
         context.setLoginPage(new LoginPage(DriverFactory.getDriver()));
         context.getLoginPage().loadTheLoginPage();
@@ -24,29 +25,29 @@ public class LoginSteps extends BaseTestSteps{
         Assert.assertEquals(context.getLoginPage().findThePageTitle().getText(), "Swag Labs", "The Swag Labs login page title displayed");
     }
 
-    @When("user enter the username as {string}")
+    @When("the user enters the username {string}")
     public void userEnterTheUsernameAs(String userName) {
         Allure.addAttachment("Log1: ", "text/plain", "Sample log, login enter user name");
         context.getLoginPage().enterUserName(userName);
     }
 
-    @And("user enter the password as {string}")
+    @And("the user enters the password {string}")
     public void userEnterThePasswordAs(String password){
         context.getLoginPage().enterPassword(password);
     }
 
-    @And("user clicks on the login button")
-    public void userClicksOnTheLoginButton() {
-        context.homePage = context.getLoginPage().clickOnLoginButton();
+    @And("the user submits valid login credentials")
+    public void userSubmitsValidLoginCredentials() {
+        context.homePage = context.getLoginPage().loginExpectingSuccess();
     }
 
-    @Then("login successful and user navigates to the home screen")
+    @Then("login should succeed and the home page should be displayed")
     public void loginSuccessfulAndUserNavigatesToTheHomeScreen() {
         Assert.assertTrue(context.homePage.findThePageTitleElement().isDisplayed(), "Home page title element displayed");
         Assert.assertEquals(context.homePage.findThePageTitleElement().getText(), "Swag Labs", "Home page title element displayed");
     }
 
-    @But("login page displayed with error message")
+    @But("the login page should display an error message")
     public void loginPageDisplayedWithErrorMessage() {
         Assert.assertTrue(context.getLoginPage().findTheLoginErrorMessage().isDisplayed(), "Login page error message displayed");
         Assert.assertEquals(context.getLoginPage().findTheLoginErrorMessage().getText(), "Epic sadface: Username and password do not match any user in this service"
@@ -56,15 +57,20 @@ public class LoginSteps extends BaseTestSteps{
         Assert.assertTrue(context.getLoginPage().checkIfTheLoginErrorMessageClosed(), "Login page error message displayed");
     }
 
-    @When("user clicks on the logout button")
+    @When("the user clicks on the logout button")
     public void userClicksOnTheLogoutButton() {
         context.hamburgerMenuPage = context.homePage.openHamburgerMenu();
         context.setLoginPage(context.hamburgerMenuPage.clickOnLogoutButton());
     }
 
-    @Then("user should navigate to the login screen")
+    @Then("the login page should be displayed")
     public void userShouldNavigateToTheLoginScreen() {
         Assert.assertTrue(context.getLoginPage().findThePageTitle().isDisplayed(), "Validate that user logged out successfully");
         Assert.assertEquals(context.getLoginPage().findThePageTitle().getText(), "Swag Labs", "Validate that user logged out successfully");
+    }
+
+    @And("the user submits invalid login credentials")
+    public void userSubmitsInvalidLoginCredentials() {
+        context.getLoginPage().loginExpectingFailure();
     }
 }

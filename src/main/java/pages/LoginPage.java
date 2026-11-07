@@ -36,9 +36,19 @@ public class LoginPage extends BasePage{
         return this;
     }
 
-    public HomePage clickOnLoginButton(){
+    private void submitLogin() {
         clickOnElement(loginButton);
+    }
+
+    public HomePage loginExpectingSuccess() {
+        submitLogin();
         return new HomePage(driver);
+    }
+
+    public LoginPage loginExpectingFailure() {
+        submitLogin();
+        waitForElement(loginErrorMessage);
+        return this;
     }
 
     public WebElement findTheLoginErrorMessage(){

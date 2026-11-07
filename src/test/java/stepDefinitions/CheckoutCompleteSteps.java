@@ -8,7 +8,7 @@ public class CheckoutCompleteSteps extends BaseTestSteps{
     public CheckoutCompleteSteps(TestContext context){
         super(context);
     }
-    @Then("user should see the order success message with order details")
+    @Then("the order confirmation page should display a success message")
     public void userShouldSeeTheOrderSuccessMessageWithOrderDetails() {
         Assert.assertTrue(context.checkoutCompletePage.findThePageTitle().isDisplayed(), "Validated the complete payment page title displayed");
         Assert.assertEquals(context.checkoutCompletePage.findThePageTitle().getText(), "Checkout: Complete!", "Validated the complete payment page title");

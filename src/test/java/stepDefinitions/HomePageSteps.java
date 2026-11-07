@@ -12,12 +12,12 @@ public class HomePageSteps extends BaseTestSteps{
         super(testContext);
     }
 
-    @Given("user logged to the application with valid credential")
+    @Given("the user is logged in with valid credentials")
     public void userLoggedToTheApplicationWithValidCredential(){
         successfulUserLoggedToTheApplicationWithValidCredential();
     }
 
-    @Then("home page sections should be displayed")
+    @Then("the home page sections should be displayed")
     public void homePageSectionsShouldBeDisplayed(){
         validateHeaderSection();
         validateFooterSection();
@@ -56,21 +56,21 @@ public class HomePageSteps extends BaseTestSteps{
         Assert.assertEquals(context.homePage.findTheInventoryAddToCartElement(sauceLabBackpackInv).getText(), "Add to cart", "Validated the inventory add to cart button label");
     }
 
-    @When("user clicks on the cart icon")
+    @When("the user clicks on the cart icon")
     public void userClicksOnTheCartIcon() {
         context.itemsCheckoutPage = context.homePage.openCartPage();
     }
 
-    @Then("user should navigate to the home page")
+    @Then("the home page should be displayed")
     public void userShouldNavigateToTheHomePage() {
         Assert.assertTrue(context.homePage.findTheHeaderSection().isDisplayed(), "Validate the header section displayed");
         Assert.assertTrue(context.homePage.findTheHamburgerIcon().isDisplayed(), "Validate the hamburger menu displayed");
     }
 
-    @When("user add {string}, {string} to the cart")
+    @When("the user adds {string} and {string} to the cart")
     public void userAddToTheCart(String inventoryItem1, String inventoryItem2) {
-        context.homePage.findTheInventoryAddToCartElement(context.homePage.findAnInventoryItemByLabel(inventoryItem1)).click();
-        context.homePage.findTheInventoryAddToCartElement(context.homePage.findAnInventoryItemByLabel(inventoryItem2)).click();
+        context.expectedCartItems.add(context.homePage.addItemToCart(inventoryItem1));
+        context.expectedCartItems.add(context.homePage.addItemToCart(inventoryItem2));
     }
 
 }

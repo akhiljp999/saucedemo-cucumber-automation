@@ -1,5 +1,7 @@
 package pages;
 
+import models.CartItem;
+import java.math.BigDecimal;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -31,7 +33,7 @@ public class HomePage extends BasePage{
 
     By inventoryTitle = By.className("inventory_item_name");
     By inventoryPrice = By.className("inventory_item_price");
-    By inventoryAddToCartButton = By.xpath("//button[normalize-space()='Add to cart']");
+    By inventoryAddToCartButton = By.xpath(".//button[normalize-space()='Add to cart']");
 
 
     public WebElement findThePageTitleElement(){
@@ -96,6 +98,17 @@ public class HomePage extends BasePage{
     }
     public WebElement findTheInventoryAddToCartElement(WebElement element){
         return findAnElement(element, inventoryAddToCartButton);
+    }
+
+    public CartItem addItemToCart(String label) {
+        WebElement item = findAnInventoryItemByLabel(label);
+        CartItem details = new CartItem(
+                findTheInventoryTitleElement(item).getText(),
+                item.findElement(By.className("inventory_item_desc")).getText(),
+                new BigDecimal(findTheInventoryPriceElement(item).getText().replace("$", "").trim()),
+                1);
+        findTheInventoryAddToCartElement(item).click();
+        return details;
     }
 
     public HamburgerMenuPage openHamburgerMenu(){
