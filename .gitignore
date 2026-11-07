@@ -17,3 +17,8 @@ Resources/Reports/
 
 .allure/
 target/
+
+# Legacy generated reports
+/cucumber-report.html
+/cucumber-report.json
+/Resources/cucumber-report.html

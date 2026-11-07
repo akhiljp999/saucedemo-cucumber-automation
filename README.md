@@ -4,7 +4,7 @@ UI tests for [SauceDemo](https://www.saucedemo.com), built with Selenium WebDriv
 
 ## Prerequisites
 
-- JDK 17 or later (the project targets Java 17).
+- JDK 17 for consistency with CI. The project targets Java 17; local browser checks have also passed on JDK 21.
 - Maven available on your terminal's PATH, or IntelliJ IDEA's bundled Maven.
 - Chrome, Edge, or Firefox installed for the selected browser.
 - Network access to SauceDemo and, on the first run, Maven dependencies and Selenium-managed browser drivers.
@@ -169,4 +169,4 @@ The workflow in `.github/workflows/automation.yml` runs the full suite in headle
 
 For pushes to `main` in a public repository, the workflow also attempts to publish the Allure report to GitHub Pages. Configure the repository's Pages source as GitHub Actions and allow deployment through the `github-pages` environment.
 
-Generated reports, `target/`, and the downloaded `.allure/` installation are ignored by Git.
+Generated reports (including legacy report paths), `target/`, and the downloaded `.allure/` installation are ignored by Git.
